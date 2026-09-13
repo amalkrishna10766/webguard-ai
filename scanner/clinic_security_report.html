@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WEBGUARD-AI Security Report - Clinic Website</title>
+<style>
+    body { font-family: Arial, sans-serif; background:#0f172a; color:#e2e8f0; padding:30px; }
+    h1 { color:#38bdf8; }
+    h2 { color:#facc15; border-bottom:1px solid #334155; padding-bottom:5px; margin-top:40px; }
+    table { width:100%; border-collapse:collapse; margin-top:10px; }
+    th, td { border:1px solid #334155; padding:8px 12px; text-align:left; }
+    th { background:#1e293b; }
+    .vuln { color:#f87171; font-weight:bold; }
+    .safe { color:#4ade80; }
+    .warn { color:#fbbf24; }
+    .Critical { color:#f87171; font-weight:bold; }
+    .High { color:#fb923c; font-weight:bold; }
+    .Medium { color:#facc15; }
+    .Low { color:#4ade80; }
+    .note { background:#1e293b; border-left:4px solid #38bdf8; padding:10px 15px; margin-top:15px; }
+</style>
+</head>
+<body>
+    <h1>WEBGUARD-AI Security Assessment Report</h1>
+    <p>Target: https://clinic-production-83e1.up.railway.app &nbsp;|&nbsp; Generated: 2026-09-13 12:07:22</p>
+    <div class="note">Note: This scan performed read-only checks only (security headers and path exposure). No injection or data-modifying tests were run against this live production site.</div>
+
+    <h2>Risk Summary</h2>
+    <table>
+        <tr><th>Category</th><th>Findings</th><th>Risk Level</th></tr>
+        <tr><td>Missing Security Headers</td><td>1/7 missing</td><td class='Medium'>MEDIUM</td></tr>
+        <tr><td>Exposed Files/Directories</td><td>1/18 exposed</td><td class='Medium'>MEDIUM</td></tr>
+    </table>
+
+    <h2>Security Headers</h2>
+    <table><tr><th>Header</th><th>Status</th><th>Purpose</th></tr><tr><td>Content-Security-Policy</td><td class='safe'>Present</td><td>Helps prevent XSS and data injection attacks</td></tr><tr><td>X-Frame-Options</td><td class='safe'>Present</td><td>Prevents clickjacking attacks</td></tr><tr><td>X-Content-Type-Options</td><td class='safe'>Present</td><td>Prevents MIME-sniffing attacks</td></tr><tr><td>Strict-Transport-Security</td><td class='safe'>Present</td><td>Enforces HTTPS connections</td></tr><tr><td>X-XSS-Protection</td><td class='vuln'>Missing</td><td>Legacy XSS filter (still checked for older browsers)</td></tr><tr><td>Referrer-Policy</td><td class='safe'>Present</td><td>Controls how much referrer info is sent</td></tr><tr><td>Permissions-Policy</td><td class='safe'>Present</td><td>Controls which browser features the site can use</td></tr></table>
+
+    <h2>Exposed Files/Directories</h2>
+    <table><tr><th>Path</th><th>Status</th></tr><tr><td>/.git/config</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/.env</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/config.php</td><td class='safe'>Not Found (404)</td></tr><tr><td>/backup.zip</td><td class='safe'>Not Found (404)</td></tr><tr><td>/admin/</td><td class='warn'>Redirect (302)</td></tr><tr><td>/phpinfo.php</td><td class='safe'>Not Found (404)</td></tr><tr><td>/robots.txt</td><td class='vuln'>Exposed (200)</td></tr><tr><td>/.htaccess</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/wp-config.php</td><td class='safe'>Not Found (404)</td></tr><tr><td>/.env.local</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/.env.production</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/package.json</td><td class='safe'>Not Found (404)</td></tr><tr><td>/server.js</td><td class='safe'>Not Found (404)</td></tr><tr><td>/api/</td><td class='safe'>Not Found (404)</td></tr><tr><td>/.well-known/</td><td class='safe'>Not Found (404)</td></tr><tr><td>/database.sql</td><td class='safe'>Not Found (404)</td></tr><tr><td>/test.php</td><td class='safe'>Not Found (404)</td></tr><tr><td>/debug</td><td class='safe'>Not Found (404)</td></tr></table>
+
+</body>
+</html>
+    

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WEBGUARD-AI Security Report</title>
+<style>
+    body { font-family: Arial, sans-serif; background:#0f172a; color:#e2e8f0; padding:30px; }
+    h1 { color:#38bdf8; }
+    h2 { color:#facc15; border-bottom:1px solid #334155; padding-bottom:5px; margin-top:40px; }
+    table { width:100%; border-collapse:collapse; margin-top:10px; }
+    th, td { border:1px solid #334155; padding:8px 12px; text-align:left; }
+    th { background:#1e293b; }
+    .vuln { color:#f87171; font-weight:bold; }
+    .safe { color:#4ade80; }
+    .warn { color:#fbbf24; }
+    .Critical { color:#f87171; font-weight:bold; }
+    .High { color:#fb923c; font-weight:bold; }
+    .Medium { color:#facc15; }
+    .Low { color:#4ade80; }
+    .summary { display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; }
+    .card { background:#1e293b; border-radius:8px; padding:15px 20px; min-width:180px; }
+</style>
+</head>
+<body>
+    <h1>WEBGUARD-AI Security Assessment Report</h1>
+    <p>Target: http://localhost &nbsp;|&nbsp; Generated: 2026-09-13 11:47:05</p>
+
+    <h2>Risk Summary</h2>
+    <table>
+        <tr><th>Category</th><th>Findings</th><th>Risk Level</th></tr>
+        <tr><td>SQL Injection</td><td>3/4 payloads succeeded</td><td class='Critical'>CRITICAL</td></tr>
+        <tr><td>Cross-Site Scripting (XSS)</td><td>4/4 payloads succeeded</td><td class='Critical'>CRITICAL</td></tr>
+        <tr><td>Missing Security Headers</td><td>7/7 missing</td><td class='Critical'>CRITICAL</td></tr>
+        <tr><td>Exposed Files/Directories</td><td>1/12 exposed</td><td class='Medium'>MEDIUM</td></tr>
+    </table>
+
+    <h2>SQL Injection Details</h2>
+    <table><tr><th>Payload</th><th>Result</th></tr><tr><td>1' OR '1'='1</td><td class='vuln'>VULNERABLE</td></tr><tr><td>1' OR '1'='1' -- </td><td class='vuln'>VULNERABLE</td></tr><tr><td>' OR 1=1#</td><td class='vuln'>VULNERABLE</td></tr><tr><td>1 UNION SELECT null, null#</td><td class='safe'>Not detected</td></tr></table>
+
+    <h2>XSS Details</h2>
+    <table><tr><th>Payload</th><th>Result</th></tr><tr><td>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</td><td class='vuln'>VULNERABLE</td></tr><tr><td>&lt;img src=x onerror=alert(&#x27;XSS&#x27;)&gt;</td><td class='vuln'>VULNERABLE</td></tr><tr><td>&lt;svg onload=alert(&#x27;XSS&#x27;)&gt;</td><td class='vuln'>VULNERABLE</td></tr><tr><td>&#x27;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</td><td class='vuln'>VULNERABLE</td></tr></table>
+
+    <h2>Security Headers</h2>
+    <table><tr><th>Header</th><th>Status</th><th>Purpose</th></tr><tr><td>Content-Security-Policy</td><td class='vuln'>Missing</td><td>Helps prevent XSS and data injection attacks</td></tr><tr><td>X-Frame-Options</td><td class='vuln'>Missing</td><td>Prevents clickjacking attacks</td></tr><tr><td>X-Content-Type-Options</td><td class='vuln'>Missing</td><td>Prevents MIME-sniffing attacks</td></tr><tr><td>Strict-Transport-Security</td><td class='vuln'>Missing</td><td>Enforces HTTPS connections</td></tr><tr><td>X-XSS-Protection</td><td class='vuln'>Missing</td><td>Legacy XSS filter (still checked for older browsers)</td></tr><tr><td>Referrer-Policy</td><td class='vuln'>Missing</td><td>Controls how much referrer info is sent</td></tr><tr><td>Permissions-Policy</td><td class='vuln'>Missing</td><td>Controls which browser features the site can use</td></tr></table>
+
+    <h2>Exposed Files/Directories</h2>
+    <table><tr><th>Path</th><th>Status</th></tr><tr><td>/.git/config</td><td class='safe'>Not Found (404)</td></tr><tr><td>/.env</td><td class='safe'>Not Found (404)</td></tr><tr><td>/config.php</td><td class='safe'>Not Found (404)</td></tr><tr><td>/backup.zip</td><td class='safe'>Not Found (404)</td></tr><tr><td>/admin/</td><td class='safe'>Not Found (404)</td></tr><tr><td>/phpinfo.php</td><td class='warn'>Redirect (302)</td></tr><tr><td>/robots.txt</td><td class='vuln'>Exposed (200)</td></tr><tr><td>/.htaccess</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/wp-config.php</td><td class='safe'>Not Found (404)</td></tr><tr><td>/config/</td><td class='warn'>Forbidden (403)</td></tr><tr><td>/database.sql</td><td class='safe'>Not Found (404)</td></tr><tr><td>/test.php</td><td class='safe'>Not Found (404)</td></tr></table>
+
+</body>
+</html>
+    
