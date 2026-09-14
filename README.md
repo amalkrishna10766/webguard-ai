@@ -42,7 +42,11 @@ Tested in two environments to validate both detection accuracy and real-world sa
 2. **A live production web application** (a healthcare appointment platform) — scanned using only **non-invasive, read-only checks** (headers + path exposure; no injection or data-modifying tests were run against live data).
    - Result: 6/7 security headers present, sensitive config paths correctly returning 403 (blocked), overall risk rated **Medium**
 
-*(Add report screenshots here — see `/screenshots` folder)*
+### DVWA Test Lab Report
+![DVWA Scan Report](screenshots/dvwa_report.png)
+
+### Production Site Scan
+![Production Site Scan](screenshots/clinic_report.png)
 
 ---
 
